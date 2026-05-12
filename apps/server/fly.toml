@@ -1,4 +1,4 @@
-# Fly.io app configuration. Replace `app` with your chosen name after running `fly launch`.
+# Fly.io app configuration.
 app = "debate-mvp-server"
 primary_region = "iad"
 
@@ -13,27 +13,8 @@ primary_region = "iad"
   auto_stop_machines = false
   auto_start_machines = true
   min_machines_running = 1
-  processes = ["app"]
 
 [[vm]]
   cpu_kind = "shared"
   cpus = 1
   memory_mb = 256
-
-[[services]]
-  internal_port = 8080
-  protocol = "tcp"
-
-  [[services.ports]]
-    port = 80
-    handlers = ["http"]
-    force_https = true
-
-  [[services.ports]]
-    port = 443
-    handlers = ["tls", "http"]
-
-  [services.concurrency]
-    type = "connections"
-    hard_limit = 200
-    soft_limit = 150
